@@ -1,0 +1,116 @@
+class TreeNode {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+
+  print() {
+    // outputs node values going down
+    // the left side of the tree first
+    // then working right
+
+    if (this.left) {
+      console.log(`${this.value} -> ${this.left.value}`);
+      this.left.print();
+    }
+
+    if (this.right) {
+      console.log(`${this.value} -> ${this.right.value}`);
+      this.right.print()
+    }
+  }
+  
+  /*getNodeByValue(value) {
+    if (this.value === value) {
+      return this;
+    } else if ((this.left) && (value < this.value)) {//3
+      return this.left.getNodeByValue(value);
+    } else if (this.right) {
+      return this.right.getNodeByValue(value);//4
+    } else {
+      return null;
+    }
+  }*/
+}
+
+class BST {
+  constructor() {
+    //initial state of the tree
+    this.root = null;
+    this.size = 0;
+  }
+  add(value) {
+
+    const newNode = new TreeNode(value);//creating a new node using a new instance of a class which holds the node.
+    //adding nodes to the tree
+    //if (this.root) {
+      if (!newNode) {
+        this.root = this.root;
+      } 
+      else {
+        if (this.addChild(newNode)) {
+          if (newNode=>this.right) {
+      newNode.right = newNode.nextNode;
+      } else if (newNode=>this.left) {
+        newNode.left = newNode.nextNode;
+      }
+        }
+      }
+      while (!isBalanced) {
+        const newParent = this.leftRotation(newNode.nextNode);
+      }
+    //  if (this.left)
+    //}
+    //
+    this.root = newNode;
+    this.size ++;
+  }
+  leftRotation(node) {
+  const newParent = node.right; // e.g. 7
+  const grandparent = node.parent; // e.g. 5}
+  // make 1 the parent of 3 (previously was the parent of 2)
+  swapParentChild(node, newParent, grandparent);
+
+  // do LL rotation
+  newParent.left = node; // makes 2 the left child of 3
+  node.right = undefined; // clean 2's right child
+
+  return newParent; // 3 is the new parent (previously was 2)
+}
+addChild(childNode) {
+    if (childNode instanceof TreeNode) {
+      this.value = childNode;
+    } else {
+      this.value = new TreeNode(childNode);
+    }
+  }
+}
+
+function isBalanced() {
+  //checks if the tree is balanced , if it is balanced it returns true , if it isnt balanced it returns false.
+  if (this.left.height - this.right.height <= 1) {
+
+  }
+}
+
+function balancedBst(a) {
+  if (a.length === 0) {
+    return null;
+  }
+  // build a binary search tree from array a
+  const NewTree = new BST();
+  a.forEach(function(value) { 
+    NewTree.add(value);
+  })
+  NewTree.root.print();
+  // to check if the tree is balanced by calling the isBalanced function
+  // if it is balanced then you return the tree , if its not then we will balance it , then return the balanced tree
+  return NewTree;
+    }
+//https://www.youtube.com/watch?v=5cU1ILGy6dM
+let a = [1,2,3,4,5,6,7,8]
+let balancedTree = balancedBst(a);
+//balancedTree.print();
+// Leave this so we can test your code:
+module.exports = balancedBst;
