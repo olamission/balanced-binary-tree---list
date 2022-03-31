@@ -80,12 +80,32 @@ class BST {
 }
 addChild(childNode) {
     if (childNode instanceof TreeNode) {
-      this.value = childNode;
+      this.a.nextNode = childNode;
     } else {
-      this.value = new TreeNode(childNode);
+      this.a.nextNode = new TreeNode(childNode);
     }
   }
-}
+depthFirstTraversal() {
+    if (this.left) {
+      this.left.depthFirstTraversal();
+    }
+    if (this.right) {
+      this.right.depthFirstTraversal();
+    }
+  }
+removeChild(childToRemove) {
+    const length = this.a.length;
+    this.a = this.a.filter(child => {
+      return childToRemove instanceof TreeNode
+      ? a !== childToRemove
+      : a.value !== childToRemove;
+    });
+
+    if (length === this.a.length) {
+      this.a.forEach(child => child.removeChild(childToRemove));
+    }
+  }
+};
 
 function isBalanced() {
   //checks if the tree is balanced , if it is balanced it returns true , if it isnt balanced it returns false.
@@ -109,7 +129,7 @@ function balancedBst(a) {
   return NewTree;
     }
 //https://www.youtube.com/watch?v=5cU1ILGy6dM
-let a = [1,2,3,4,5,6,7,8]
+let a = [1,2,3,4,5,6,7,8];
 let balancedTree = balancedBst(a);
 //balancedTree.print();
 // Leave this so we can test your code:
